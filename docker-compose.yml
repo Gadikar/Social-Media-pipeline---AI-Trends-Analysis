@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  faktory:
+    image: contribsys/faktory:latest
+    command: /faktory -b :7419 -w :7420
+    environment:
+      - FAKTORY_PASSWORD=password
+    volumes:
+      - faktory-data:/var/lib/faktory/db
+    ports:
+      - "127.0.0.1:7419:7419"
+      - "127.0.0.1:7420:7420"
+    network_mode: host
+
+  4chan-crawler:
+    image: 4chan
+    environment:
+      - FAKTORY_SERVER_URL=tcp://:password@localhost:7419
+      - DATABASE_URL=postgresql://postgres:password@localhost:5432/crawler_db
+    depends_on:
+      - faktory
+    volumes:
+      - ./4chan:/app/4chan
+    network_mode: host
+
+  reddit-crawler:
+    image: reddit
+    environment:
+      - FAKTORY_SERVER_URL=tcp://:password@localhost:7419
+      - DATABASE_URL=postgresql://postgres:password@localhost:5432/crawler_db
+    depends_on:
+      - faktory
+    volumes:
+      - ./reddit:/app/reddit
+    network_mode: host
+
+volumes:
+  faktory-data:
+  crawler-data:

@@ -1,0 +1,15 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+COPY 4chan /app/4chan
+
+COPY requirements.txt /app
+
+COPY .env /app
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+WORKDIR /app/4chan
+
+CMD python cold_start_board.py g && python chan_crawler.py
