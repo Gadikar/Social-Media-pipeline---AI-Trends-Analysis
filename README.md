@@ -1,36 +1,7 @@
-# data_noobs Project 1 Implementation
-
-## Prerequisites 
-Docker
-
-Postgres
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/MolMMnYF)
 
 
-## Postgres setup
-Create a database with name crawler_db
-
-Use the db scripts from /reddit and /4chan and run the scripts
-
-## Building the 4chan and reddit images
-
-```angular2html
-docker build -f Dockerfile.4chan -t 4chan .
-docker build -f Dockerfile.reddit -t reddit .
-```
-
-## Running the application
-
-Starting the application:
-```angular2html
-docker compose up --build
-```
-Stopping the application:
-```angular2html
-docker compose down
-```
-
-  
+TO Run these files from figures folder use the ssh tunneling and connect to database on vm, and exceute the code. 
 
 
-
-
+Alternatively direclty run these files from VM using python <file_name>.py command
